@@ -1,0 +1,67 @@
+<div class="grid-container"><h1 class="mat-h1">Scope Received</h1>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1.5%" fxLayoutAlign="center">
+  <div fxFlex="70%">
+      
+      <div *ngFor="let assoc of details">
+        <mat-accordion class="wb-expansion">
+          <mat-expansion-panel >
+            <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
+              <mat-panel-title fxFlex="75%">
+               
+                <p >
+                    <span>{{assoc.Cust_FirstName}} {{assoc.Cust_LastName}}</span> 
+                 
+                  <span  class="mat-small wb-grey" >{{assoc.Loc_Name}}</span>
+                  <span class="wb-primary">{{assoc.Work_Type}}</span>
+                  <span class="mat-small wb-accent">{{assoc.Category}} </span>
+                  <span class="wb-primary"*ngIf="assoc.Sch_Site_Visit"> Site Visit Scheduled on {{assoc.Sch_Site_Visit}}</span>
+               
+                    <span class="mat-small wb-accent" *ngIf="assoc.Act_Site_Visit"> Site Visited on {{assoc.Act_Site_Visit}}</span>
+                  
+                </p>          
+              </mat-panel-title>
+              
+              <mat-panel-description fxFlex="25%">
+                  <p >
+                 
+                    <span class="wb-primary" *ngIf="assoc.TotalQuote">Rs.{{assoc.TotalQuote}}</span>
+               
+                    <span class="mat-small wb-accent" *ngIf="assoc.Work_Days">{{assoc.Work_Days}} days </span>
+                  <span > 
+                    
+                    <button mat-raised-button color="primary" *ngIf="assoc.TenderFinish_Flag==0" (click)="finishTender(assoc.WorkTender_ID)">Finish</button>
+                   
+                  </span>
+                  </p>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        <!--<form [formGroup]="assocForm">
+          <mat-form-field  appearance="outline" fxFlex>
+            <mat-label>Select Lead</mat-label>
+            <input matInput formControlName="WorkDays">
+            </mat-form-field>
+        </form>-->
+            <app-lineitemdisplay tid={{assoc.WorkTender_ID}}, type="2"></app-lineitemdisplay> 
+              
+          </mat-expansion-panel>
+          
+        </mat-accordion>
+      </div>
+      
+    </div>
+    <div class="container"  fxLayoutWrap
+    
+        fxLayoutAlign="center"  gdAlignRows="start stretch" 
+          gdGap="20px 20px" fxFlex="30%">   
+           
+            <div fxFlex="100%">
+            <app-keydeliverables wid="this.Work_ID"></app-keydeliverables>
+            </div>
+            <div fxFlex="100%">
+            <app-termsandconditions wid="this.Work_ID"></app-termsandconditions>
+            </div>   
+                 
+    </div>
+  </div>
+  
+    

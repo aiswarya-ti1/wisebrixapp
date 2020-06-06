@@ -1,0 +1,34 @@
+
+<mat-card class="login-card">
+    
+    <img mat-card-image src="assets/img/wblogo.jpg" alt="WiseBrix">
+
+    
+
+    <mat-card-title >Register</mat-card-title>
+      
+  
+    <mat-card-content>
+     
+    <form name="loginForm" [formGroup]="otpForm" >
+      <input matInput formControlName="sendOTP" hidden>
+   
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>OTP No.</mat-label>
+                <input matInput formControlName="otpNo" placeholder="Enter OTP">
+                <mat-icon matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                
+              </mat-form-field>
+            </p>
+            
+            
+              
+            
+            <button type="button" mat-raised-button color="primary" (click)="verifyOTP(otpForm.value)">Verify</button>
+           
+          </form>
+  </mat-card-content>
+
+  
+</mat-card>

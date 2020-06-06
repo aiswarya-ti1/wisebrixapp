@@ -1,0 +1,33 @@
+
+<mat-card class="login-card">
+    
+    <img mat-card-image src="assets/img/wblogo.jpg" alt="WiseBrix">
+
+    
+
+    <mat-card-title >Register</mat-card-title>
+      
+  
+    <mat-card-content>
+     
+    <form name="loginForm" [formGroup]="registerForm" >
+   
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Phone No.</mat-label>
+                <input matInput formControlName="phNo" placeholder="Enter Contact No.">
+                <mat-icon matSuffix>phone</mat-icon>
+                
+              </mat-form-field>
+            </p>
+            
+            
+              
+            
+            <button type="button" mat-raised-button color="primary" (click)="sendOTP(registerForm.value)">Next</button>
+           
+          </form>
+  </mat-card-content>
+
+  
+</mat-card>

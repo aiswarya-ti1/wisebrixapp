@@ -1,0 +1,27 @@
+/*styles for header background : Start*/
+.mat-card-header{
+   background-color:#f15f23;
+    padding:10px !important;
+    border-top-right-radius: 4px ;
+    border-top-left-radius: 4px ;
+    color:white;
+   
+    
+  }
+  
+  .mat-card{
+    padding:0 !important;
+   
+  }
+  
+  .mat-card-content{
+    padding:10px !important;
+  }
+  /*styles for header background: End*/
+
+  .mat-card-title{
+    margin-bottom:0px !important;
+  }
+.mat-card-content ul{
+    padding-left:20px;
+  }

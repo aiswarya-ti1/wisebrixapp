@@ -1,0 +1,64 @@
+<div class="grid-container"><h1 class="mat-h1">Your Best Quotes Received</h1>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1.5%" fxLayoutAlign="center">
+<div fxFlex="70%">
+    
+    <div *ngFor="let assoc of tenderAssocs">
+      <mat-accordion class="wb-expansion">
+        <mat-expansion-panel >
+          <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
+            <mat-panel-title fxFlex="75%">
+             
+              <p >
+                  <span>{{assoc.Assoc_Code}}</span> 
+                <span  class="mat-small wb-orange" >
+                  <mat-icon>star</mat-icon>
+                  <mat-icon>star</mat-icon>
+                  <mat-icon>star</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </span>
+                <span  class="mat-small wb-grey" >{{assoc.Address_town}}</span>
+                <span class="mat-small wb-teal" *ngIf="assoc.Site_Analysis_Date"> Site Analysis Scheduled on {{assoc.Site_Analysis_Date}}</span>
+                <span  class="mat-small wb-purple"*ngIf="assoc.ActualSite_Analysis_Date"> Site Analyzed on {{assoc.ActualSite_Analysis_Date}}</span>
+                <span class="mat-small wb-teal" *ngIf="assoc.Sch_Site_Visit"> Site Visit Scheduled on {{assoc.Sch_Site_Visit}}</span>
+                <span  class="mat-small wb-purple" *ngIf="assoc.Act_Site_Visit"> Site Visited on {{assoc.Act_Site_Visit}}</span>
+              </p>          
+            </mat-panel-title>
+            
+            <mat-panel-description fxFlex="25%">
+                <p >
+                <span class="wb-primary">Rs.{{assoc.TotalQuote}}</span>
+               
+                <span class="mat-small wb-accent">{{assoc.Work_Days}} days </span>
+                <span > 
+                  <button mat-raised-button color="accent" *ngIf="assoc.SelectStatus!=2 && !assoc.Sch_Site_Visit" [disabled]="(this.g.Assoc_ID && this.g.Assoc_ID != assoc.Assoc_ID) ||assoc.ReqSiteVisit_Flag==2 " (click)="reqSiteVisit(assoc.Assoc_ID)" >Request Visit</button>
+                  <button mat-raised-button color="primary" *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus!=1"  (click)="confirmAssoc(assoc.WorkTender_ID)">Confirm</button>
+                  <button mat-raised-button color="accent" *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus!=1"  (click)="rejectAssoc(assoc.WorkTender_ID)">Reject</button>
+                </span>
+                </p>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <app-lineitemdisplay tid={{assoc.WorkTender_ID}}, type="1"></app-lineitemdisplay> 
+            
+        </mat-expansion-panel>
+        
+      </mat-accordion>
+    </div>
+    
+  </div>
+  <div class="container"  fxLayoutWrap
+  
+      fxLayoutAlign="center"  gdAlignRows="start stretch" 
+        gdGap="20px 20px" fxFlex="30%">   
+         
+          <div fxFlex="100%">
+          <app-keydeliverables></app-keydeliverables>
+          </div>
+          <div fxFlex="100%">
+          <app-termsandconditions></app-termsandconditions>
+          </div>   
+               
+  </div>
+</div>
+
+  

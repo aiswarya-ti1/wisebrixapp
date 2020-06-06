@@ -1,0 +1,42 @@
+
+<mat-card class="login-card">
+    
+    <img mat-card-image src="assets/img/wblogo.jpg" alt="WiseBrix">
+
+    
+
+    <mat-card-title >Sign In</mat-card-title>
+      
+  
+    <mat-card-content>
+     
+    <form name="loginForm" [formGroup]="loginForm">
+      <p><a class="link" [routerLink]="['/assoc-login']">Associate Login</a></p>
+   
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Enter your Username" formControlName="username">
+                <mat-icon matSuffix>account_circle</mat-icon>
+                
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="password" formControlName="pwd">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </p>
+            
+              
+            
+            <p><button mat-raised-button color="primary" (click)="signIn(loginForm.value)">Sign In</button></p>
+            <p><a class="link" [routerLink]="['/register']">Register</a></p>
+          </form>
+  </mat-card-content>
+
+  
+</mat-card>

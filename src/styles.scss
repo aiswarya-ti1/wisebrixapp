@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.grid-container {
+    margin: 20px;
+  }
+/*Font Colour classes for wisebrix*/
+.wb-grey{
+    color:grey;
+}
+.wb-orange{
+    color:orange;
+}
+
+.wb-green{
+    color:#7ec423;
+}
+.wb-purple{
+    color:#b83794;
+}
+.wb-primary{
+    color:#f15f23;
+}
+.wb-accent{
+    color:#27a669;
+}
+.wb-blue{
+    color:#0c96bd
+}
+
+.wb-accent-a{
+    color:#f0721b;
+}
+.wb-accent-b{
+    color:#f7941d;
+}
+.wb-accent-c{
+    color:#fcb040;
+}
+
+/*button colors*/
+.wb-grey-button button{
+    background-color:grey;
+}
+.wb-green-button button{
+    background-color:#7ec423 !important;
+}
+.wb-blue-button button{
+    background-color:#0c96bd;
+}

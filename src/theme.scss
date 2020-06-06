@@ -1,0 +1,124 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$wb-brickred: (
+    50 : #fdece5,
+    100 : #fbcfbd,
+    200 : #f8af91,
+    300 : #f58f65,
+    400 : #f37744,
+    500 : #f15f23,
+    600 : #ef571f,
+    700 : #ed4d1a,
+    800 : #eb4315,
+    900 : #e7320c,
+    A100 : #ffffff,
+    A200 : #ffe2de,
+    A400 : #ffb7ab,
+    A700 : #ffa191,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$wb-brickred2: (
+    50 : #fbebe5,
+    100 : #f5cebe,
+    200 : #efad93,
+    300 : #e88c68,
+    400 : #e37447,
+    500 : #de5b27,
+    600 : #da5323,
+    700 : #d5491d,
+    800 : #d14017,
+    900 : #c82f0e,
+    A100 : #fff6f5,
+    A200 : #ffcbc2,
+    A400 : #ff9f8f,
+    A700 : #ff8975,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$wb-grey: (
+    50 : #eeeded,
+    100 : #d4d3d2,
+    200 : #b7b5b5,
+    300 : #9a9797,
+    400 : #858180,
+    500 : #6f6b6a,
+    600 : #676362,
+    700 : #5c5857,
+    800 : #524e4d,
+    900 : #403c3c,
+    A100 : #f7a3a3,
+    A200 : #f37474,
+    A400 : #ff3535,
+    A700 : #ff1b1b,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+
+$my-app-primary: mat-palette($wb-brickred2);
+$my-app-accent:  mat-palette($wb-grey, 600, 600, A700);
+$my-app-warn:    mat-palette($mat-red);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.unicorn-dark-theme {
+  @include angular-material-theme($dark-theme);
+}

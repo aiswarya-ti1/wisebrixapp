@@ -1,0 +1,31 @@
+
+<h3>Tender Details</h3>
+<table mat-table [dataSource]="dataSource" fxLayoutGap="1px">
+    <!-- User name Definition -->
+    <ng-container matColumnDef="lineitems">
+      <th mat-header-cell *matHeaderCellDef> Specification & Measurement </th>
+      <td mat-cell *matCellDef="let row" class="wb-column-left" >  
+          <p>{{row.LineItem_Name}}<br>
+            <i  class="mat-small wb-grey" >{{row.Comments}}</i><br>
+            <i  class="mat-small wb-accent-b" >{{row.Quantity}} {{row.Unit_Code}}</i><br>
+            </p> </td>
+    </ng-container>
+   
+    <!-- Age Definition -->
+    <ng-container matColumnDef="amounts">
+      <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Amount </th>
+      <td mat-cell *matCellDef="let row" class="wb-column-right" >  
+          <p class="wb-primary" *ngIf="row.Value">Rs. {{row.Value}}<br>
+            <i  class="mat-small wb-green" *ngIf="row.Rate">Rs. {{row.Rate}} per {{row.Unit_Code}}</i><br>
+            
+            </p>
+
+          </td>
+    </ng-container>
+    
+  
+      
+    <!-- Header and Row Declarations -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="addRate(row.WorkTenderLab_ID)"></tr>
+    </table>
