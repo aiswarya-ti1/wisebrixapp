@@ -43,13 +43,21 @@ export class AssocDashboardComponent implements OnInit {
   getAssocWorks()
   {
    this.authService.biws_AssocWorks(this.Assoc_ID).subscribe(result=>{console.log(result);
-    this.AssocName=result[0]['Assoc_FirstName']+' '+result[0]['Assoc_MiddleName']+''+result[0]['Assoc_LastName'];
+    if(result.length==0)
+    {
+      this.AssocName=" ";
+    }
+    else{
+      this.AssocName=result[0]['Assoc_FirstName']+' '+result[0]['Assoc_MiddleName']+''+result[0]['Assoc_LastName'];
       this.dataSource=result;
+    }
+    
     })
   }
   viewTender(wid)
   {
     this.g.Work_ID=wid;
+    this.g.index=2;
 
   }
  

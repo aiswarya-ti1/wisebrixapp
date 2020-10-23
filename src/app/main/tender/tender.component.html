@@ -26,19 +26,23 @@
             
             <mat-panel-description fxFlex="25%">
                 <p >
-                <span class="wb-primary">Rs.{{assoc.TotalQuote}}</span>
-               
-                <span class="mat-small wb-accent">{{assoc.Work_Days}} days </span>
+                <span class="wb-primary" *ngIf="this.paymentFlag!=0">Rs.{{assoc.TotalQuote}}</span>
+                <span class="wb-primary" *ngIf="this.paymentFlag==0" style=" font-size: 15px;
+                color: transparent;
+                text-shadow: 0 0 11px #000;">Rs.99,999</span>
+                <span class="mat-small wb-accent" *ngIf="this.paymentFlag!=0">{{assoc.Work_Days}} days </span>
                 <span > 
-                  <button mat-raised-button color="accent" *ngIf="assoc.SelectStatus!=2 && !assoc.Sch_Site_Visit" [disabled]="(this.g.Assoc_ID && this.g.Assoc_ID != assoc.Assoc_ID) ||assoc.ReqSiteVisit_Flag==2 " (click)="reqSiteVisit(assoc.Assoc_ID)" >Request Visit</button>
-                  <button mat-raised-button color="primary" *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus!=1"  (click)="confirmAssoc(assoc.WorkTender_ID)">Confirm</button>
-                  <button mat-raised-button color="accent" *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus!=1"  (click)="rejectAssoc(assoc.WorkTender_ID)">Reject</button>
+                  <button mat-raised-button color="accent" *ngIf="assoc.SelectStatus!=2 && !assoc.Sch_Site_Visit && this.paymentFlag!=0 && assoc.ReqSiteVisit_Flag==0" [disabled]="(this.g.Assoc_ID && this.g.Assoc_ID != assoc.Assoc_ID) ||assoc.ReqSiteVisit_Flag!=0 " (click)="reqSiteVisit(assoc.Assoc_ID)" >Request Visit</button>
+                  <button mat-raised-button color="accent" *ngIf="assoc.SelectStatus!=2 && !assoc.Sch_Site_Visit && this.paymentFlag!=0 && assoc.ReqSiteVisit_Flag==1" >Request Visit Processing</button>
+                  <button mat-raised-button color="wb-purple" *ngIf="assoc.SelectStatus==2" >Rejected</button>
+                  <button mat-raised-button color="primary" *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus==0"  (click)="confirmAssoc(assoc.WorkTender_ID)">Confirm</button>
+                  <button mat-raised-button color="accent" *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus==0"  (click)="rejectAssoc(assoc.WorkTender_ID)">Reject</button>
                 </span>
                 </p>
             </mat-panel-description>
           </mat-expansion-panel-header>
       
-          <app-lineitemdisplay tid={{assoc.WorkTender_ID}}, type="1"></app-lineitemdisplay> 
+          <app-lineitemdisplay *ngIf="this.paymentFlag!=0" tid={{assoc.WorkTender_ID}}, type="1"></app-lineitemdisplay> 
             
         </mat-expansion-panel>
         

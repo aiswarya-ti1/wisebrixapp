@@ -32,6 +32,7 @@ export class AssocTenderComponent implements OnInit {
  Tender_ID : number;
  confirmDialogRef : MatDialogRef<ConfirmDialogComponent>;
  dialogRef :MatDialogRef<SingleInputDialogComponent>;
+ duration : number;
   constructor( private _formBuilder: FormBuilder, private router:Router, private authService :AuthService,
     private activatedRoute : ActivatedRoute,private storage:LocalStorageService, 
     private g:GlobalConstants, private dialog : MatDialog
@@ -49,7 +50,10 @@ export class AssocTenderComponent implements OnInit {
 
       this.Work_ID=this.g.Work_ID;
       console.log('Work Id'+this.Work_ID);
+     
+      
       this.getAssocTender(this.Assoc_ID, this.Work_ID);
+      
   
    
  
@@ -59,6 +63,7 @@ export class AssocTenderComponent implements OnInit {
     this.authService.biws_getAssocTender(aid, wid).subscribe(result=>{console.log(result);
       this.details=result;
       this.Tender_ID=result[0]['WorkTender_ID'];
+      this.chkWorkDaysExists(this.Tender_ID);
 
     })
   }
@@ -76,7 +81,13 @@ export class AssocTenderComponent implements OnInit {
           if(result==true)
           {
              
-                 this.chkWorkDaysExists();
+            this.authService.biws_pushBackToPMA(this.Tender_ID).subscribe(result=>{console.log(result);
+              if(result['Success']==true)
+              {
+                alert('Tendering completed successfully!!');
+                this.getAssocTender(this.Assoc_ID, this.Work_ID);
+              }
+            })   
               
           }
       }
@@ -84,40 +95,40 @@ export class AssocTenderComponent implements OnInit {
   });
   
   }
-  chkWorkDaysExists()
+  chkWorkDaysExists(tid)
   {
-this.authService.chkWorkDaysExists(this.Tender_ID).subscribe(result=>{console.log(result);
-  if(result==0 || result==null)
-  {
-    this.dialogRef = this.dialog.open(SingleInputDialogComponent, {
-      
-      data      : {
-       id : this.Tender_ID,
-       title :'Work Days',
-       
-       msg : 'Please enter number of days to complete the work',
-     type :1
-        
-      }
-  });
-
-  this.dialogRef.afterClosed()
-  .subscribe(result => {
-    this.getAssocTender(this.Assoc_ID, this.Work_ID);
-     
-  });
+   
+this.authService.chkWorkDaysExists(tid).subscribe(result=>{console.log(result);
+  this.duration=result;
+  //alert(this.duration);
+  
+});
   }
-  else
+  addDuration()
   {
-    this.authService.biws_pushBackToPMA(this.Tender_ID).subscribe(result=>{console.log(result);
-      if(result['Success']==true)
-      {
-        alert('Tendering completed successfully!!');
+    
+        this.dialogRef = this.dialog.open(SingleInputDialogComponent, {
+          
+          data      : {
+           id : this.Tender_ID,
+           title :'Work Days',
+           
+           msg : 'Please enter number of days to complete the work',
+         type :1
+            
+          }
+      });
+    
+      this.dialogRef.afterClosed()
+      .subscribe(result => {
         this.getAssocTender(this.Assoc_ID, this.Work_ID);
-      }
-    })
-  }
-})
-  }
+       // this.chkWorkDaysExists();
+         
+      });
+
+  
+
+  
+}
 
 }

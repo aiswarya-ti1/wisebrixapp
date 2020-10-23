@@ -43,7 +43,7 @@ export class PasswordConfirmComponent implements OnInit {
   });
   this.registerForm.controls['userName'].setValue(this.userName);
   console.log('UserName '+this.userName);
- this.getCustID();
+ //this.getCustID();
   }
   getCustID()
   {
@@ -57,19 +57,34 @@ export class PasswordConfirmComponent implements OnInit {
   pwdCheck(values)
   {
     console.log(values);
+    let user=values;
     if(values['pwd']== values['confirm_pwd'])
     {
-this.authService.biws_SignUp(values).subscribe(result=>{console.log(result);
-if(result['Success']== true)
-{
-this.router.navigate(['home']);
-}})
-    }
-    else{
-alert('Password Not match');
-    }
-
+this.authService.biws_SignUp(user).subscribe(result=>{console.log(result);
+  if(result['token']!=false)
+      {
+        this.storage.store('Token',result['token']);
+       // this.authService.biws_SignIn(user).subscribe(result=>{console.log(result);
+         // if(result['Success']==true)
+         // {
+            this.storage.store('CustID',result['Cust_ID'][0]['Customer_ID']);
+            this.storage.store('CustName',result['Cust_ID'][0]['Cust_FirstName']);
+            //this.cust_ID=result['Cust_ID'];
+            this.router.navigate(['home']);
+          //}
+        //})
+      }
+      else if(result['token']==false)
+      {
+        alert('Something wenr wrong!!');
+      }
+    });
 
   }
+  else{
+    alert('Password Not Match!!')
+  }
+  }
+
 
 }

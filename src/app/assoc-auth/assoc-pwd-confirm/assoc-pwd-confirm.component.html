@@ -1,0 +1,41 @@
+
+<mat-card class="login-card">
+    
+    <img mat-card-image src="assets/img/wblogo.jpg" alt="WiseBrix">
+
+    
+
+    <mat-card-title >Register</mat-card-title>
+      
+  
+    <mat-card-content>
+     
+    <form name="loginForm" [formGroup]="registerForm" >
+      <input matInput formControlName="userName" hidden>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="pwd" placeholder="Enter Password">
+                <mat-icon matSuffix>phone</mat-icon>
+                
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput  type="password" formControlName="confirm_pwd" placeholder="Confirm Password">
+                <mat-icon matSuffix>phone</mat-icon>
+                
+              </mat-form-field>
+            </p>
+                    
+            
+              
+            
+            <button type="button" mat-raised-button color="primary" (click)="pwdCheck(registerForm.value)">Register</button>
+            
+          </form>
+  </mat-card-content>
+
+  
+</mat-card>

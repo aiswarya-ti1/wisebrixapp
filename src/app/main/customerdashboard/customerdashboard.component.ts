@@ -41,7 +41,8 @@ export class CustomerdashboardComponent {
   );
 
   
-  constructor(private breakpointObserver: BreakpointObserver,private authService :AuthService,private storage:LocalStorageService,
+  constructor(private breakpointObserver: BreakpointObserver,private authService :AuthService,
+    private storage:LocalStorageService,
     private activatedRoute : ActivatedRoute, private g :GlobalConstants) {}
     ngOnInit() {
      this.Cust_ID=this.storage.retrieve('CustID');
@@ -50,6 +51,7 @@ export class CustomerdashboardComponent {
       this.getWorkTenderDetails();
       console.log('First Tab');
       this.g.Work_ID=0;
+      this.g.Status=0;
       
       console.log('Work_ID' +this.g.Work_ID);
       
@@ -70,9 +72,21 @@ export class CustomerdashboardComponent {
       })
     
     }
-    viewTender(wid)
+    viewTender(wid, status)
     {
      this.g.Work_ID=wid;   
+     this.g.Status=status;
+     if(status==7 || status==8 || status==9 || status==10)
+     {
+      this.g.index=2;
+     }
+     else if(status==11 || status==12)
+     {
+       this.g.index=3;
+     }
+     
+     console.log(status);
+    
      //this.Work_ID=wid;
      //this.siteFlagEvent.emit(this.g.Work_ID);
      //console.log('Work_ID'+this.g.Work_ID)

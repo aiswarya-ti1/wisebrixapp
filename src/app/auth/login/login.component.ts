@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup(
       {
         username: new FormControl(),
-        pwd : new FormControl(),
+        password : new FormControl(),
   
       });
   }
@@ -27,21 +27,37 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this._formBuilder.group({
       username   : ['', Validators.required],
-      pwd: ['', Validators.required]
+      password: ['', Validators.required]
   });
   }
   signIn(values)
   {
+    //debugger;
     console.log(values);
-    this.authService.biws_SignIn(values).subscribe(result=>{console.log(result);
-      if(result['Success']==true)
+    
+     let user=values;
+     this.authService.biws_SignIn(user).subscribe(result=>{console.log(result);
+      if(result['token']!=false)
       {
-        this.storage.store('CustID',result['Cust_ID'][0]['Customer_ID']);
-        this.storage.store('CustName',result['Cust_ID'][0]['Cust_FirstName']);
-        this.cust_ID=result['Cust_ID'];
-        this.router.navigate(['home']);
+        this.storage.store('Token',result['token']);
+       // this.authService.biws_SignIn(user).subscribe(result=>{console.log(result);
+         // if(result['Success']==true)
+         // {
+          this.storage.store('UserID',result['Cust_ID'][0]['ID']);
+            this.storage.store('CustID',result['Cust_ID'][0]['Customer_ID']);
+            this.storage.store('CustName',result['Cust_ID'][0]['Cust_FirstName']);
+            this.cust_ID=result['Cust_ID'];
+            this.router.navigate(['home']);
+          //}
+        //})
       }
-    })
+      else if(result['token']==false)
+      {
+        alert('Incorrect Username or Password!!');
+      }
+       
+     });
+    
 
   }
 

@@ -9,7 +9,7 @@
               <mat-panel-title fxFlex="75%">
                
                 <p >
-                    <span>{{assoc.Cust_FirstName}} {{assoc.Cust_LastName}}</span> 
+                    
                  
                   <span  class="mat-small wb-grey" >{{assoc.Loc_Name}}</span>
                   <span class="wb-primary">{{assoc.Work_Type}}</span>
@@ -24,12 +24,13 @@
               <mat-panel-description fxFlex="25%">
                   <p >
                  
-                    <span class="wb-primary" *ngIf="assoc.TotalQuote">Rs.{{assoc.TotalQuote}}</span>
+                    <span class="wb-primary" *ngIf="assoc.TotalQuote && assoc.TenderFinish_Flag==1">Rs.{{assoc.TotalQuote}}</span>
                
                     <span class="mat-small wb-accent" *ngIf="assoc.Work_Days">{{assoc.Work_Days}} days </span>
                   <span > 
                     
-                    <button mat-raised-button color="primary" *ngIf="assoc.TenderFinish_Flag==0" (click)="finishTender(assoc.WorkTender_ID)">Finish</button>
+                    <button mat-raised-button color="primary" *ngIf="assoc.TenderFinish_Flag==0 && this.duration" (click)="finishTender(assoc.WorkTender_ID)">Finish</button>
+                    <button mat-raised-button color="primary" *ngIf="!this.duration" (click)="addDuration()">Enter Duration</button>
                    
                   </span>
                   </p>

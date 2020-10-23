@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,10 +11,10 @@ import { GlobalConstants } from './globalConstants';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent{
   Cust_ID : number;
   
-  Work_ID : number;
+  Work_ID : number=0;
   
   
   
@@ -24,13 +24,17 @@ export class HomeComponent {
     map(result => result.matches)
   );
 
-constructor(private breakpointObserver: BreakpointObserver,private storage:LocalStorageService, private g : GlobalConstants,
+constructor(private breakpointObserver: BreakpointObserver,private storage:LocalStorageService, 
+  private g : GlobalConstants,
   private router :Router) {
 
   
  // this.workStorage.clear();
 }
+
 ngOnInit() {
+this.g.Work_ID=0;
+this.g.index=1;
   this.Cust_ID=this.storage.retrieve('CustID');
   this.Work_ID=this.g.Work_ID;
   

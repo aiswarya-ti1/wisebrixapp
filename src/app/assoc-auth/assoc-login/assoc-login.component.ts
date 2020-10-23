@@ -21,7 +21,7 @@ export class AssocLoginComponent implements OnInit {
     this.loginForm = new FormGroup(
       {
         username: new FormControl(),
-        pwd : new FormControl(),
+        password : new FormControl(),
   
       });
   }
@@ -29,20 +29,36 @@ export class AssocLoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this._formBuilder.group({
       username   : ['', Validators.required],
-      pwd: ['', Validators.required]
+      password: ['', Validators.required]
   });
   }
   assocSignIn(values)
   {
+    /*this.authService.biws_sendOTP('7979','8129913939').subscribe(result=>{console.log(result);
+    })*/
     console.log(values);
-    this.authService.biws_assocSignIn(values).subscribe(result=>{console.log(result);
-      if(result['Success']==true)
+    let user=values;
+     this.authService.biws_assocSignIn(user).subscribe(result=>{console.log(result);
+      if(result['token']!=false)
       {
-        this.assoc_ID=result['Assoc'];
-        this.storage.store('AssocID',result['Assoc']);
-        this.router.navigate(['assoc-home']);
+        this.storage.store('Token',result['token']);
+       // this.authService.biws_assocSignIn(values).subscribe(result1=>{console.log(result1);
+         // if(result1['Success']==true)
+          //{
+            this.assoc_ID=result['Assoc']['Assoc_ID'];
+            this.storage.store('AssocID',result['Assoc']['Assoc_ID']);
+            this.router.navigate(['assoc-home']);
+          }
+        //})
+      
+      else if(result['token']==false)
+      {
+        alert('Incorrect Username or Password!!');
       }
-    })
+
+     });
+     
+    
 
   }
 

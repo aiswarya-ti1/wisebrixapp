@@ -5,7 +5,7 @@
 
     
 
-    <mat-card-title >Sign In</mat-card-title>
+    <mat-card-title >Customer Sign In</mat-card-title>
       
   
     <mat-card-content>
@@ -24,7 +24,7 @@
             <p>
               <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput [type]="password" formControlName="pwd">
+                <input matInput [type]="password" formControlName="password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>

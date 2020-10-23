@@ -12,7 +12,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PasswordConfirmComponent } from './auth/pwd-confirm/pwd-confirm.component';
 
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -25,11 +25,23 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { GlobalConstants } from './main/globalConstants';
 import { AssocDashboardComponent } from './assoc-auth/assoc-dashboard/assoc-dashboard.component';
 import { AssocHomeComponent } from './assoc-auth/assoc-home.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AssocRegisterComponent } from './assoc-auth/assoc-register/assoc-register.component';
+import { AssocPasswordConfirmComponent } from './assoc-auth/assoc-pwd-confirm/assoc-pwd-confirm.component';
+import { AssocOtpVerificationComponent } from './assoc-auth/assoc-otp-verification/assoc-otp-verification.component';
+import { AuthGuard } from './auth.guard';
+import { HttpInterceptorHandler } from '@angular/common/http/src/interceptor';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { PaymentsComponent } from './payments/payments.component';
+import { MatSnackBarModule } from '@angular/material';
+
+
 
 const routes:Routes = [
   {
     path :'login',
-    component : LoginComponent
+    component : LoginComponent,
+    
   },
   {
     path :'assoc-login',
@@ -37,15 +49,31 @@ const routes:Routes = [
   },
   {
     path     : 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    
+},
+{
+    path     : 'assoc-register',
+    component: AssocRegisterComponent
 },
 {
   path     : 'otp/:name',
-  component: OtpVerificationComponent
+  component: OtpVerificationComponent,
+  
+}
+,
+{
+  path     : 'assoc-otp/:name',
+  component: AssocOtpVerificationComponent
 },
 {
   path     : 'confirm-pwd/:name',
-  component: PasswordConfirmComponent
+  component: PasswordConfirmComponent,
+  
+},
+{
+  path     : 'assoc-confirm-pwd/:name',
+  component: AssocPasswordConfirmComponent
 },
 {
   path     : 'landing-page',
@@ -58,7 +86,8 @@ const routes:Routes = [
 ,
 {
   path :'home',
-  component :HomeComponent
+  component :HomeComponent,
+  //canActivate: [AuthGuard]
 },
 { path: '', redirectTo: '/landing-page', pathMatch: 'full' }
 
@@ -68,21 +97,31 @@ const routes:Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PaymentsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,ReactiveFormsModule,HomeModule,
     AuthModule,FormsModule,
     BrowserAnimationsModule,
-    CustomMaterialModule,
-    RouterModule.forRoot(routes),
+    CustomMaterialModule,MatSnackBarModule,
+    RouterModule.forRoot(routes, { useHash: true }),
     NgxWebstorageModule.forRoot(),
     FlexLayoutModule
      
 
   ],
-  providers: [HttpClientModule, GlobalConstants],
+  providers: [HttpClientModule, GlobalConstants,{provide: LocationStrategy, 
+    useClass: HashLocationStrategy,},
+    /*{
+      provide : HTTP_INTERCEPTORS,
+      useClass : TokenInterceptorService,
+      multi:true
+  
+    }*/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+/**/

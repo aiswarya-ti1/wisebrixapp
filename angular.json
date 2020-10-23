@@ -17,11 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "E:/xampp/htdocs/BIMS/public/wisebrix/",
+            "outputPath": "dist/wbcustomerapp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
+            
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -65,6 +66,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "wbcustomerapp:build"
+            
           },
           "configurations": {
             "production": {
@@ -90,7 +92,9 @@
               "src/styles.scss",
               "src/theme.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "./node_modules/razorpay/dist/razorpay.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

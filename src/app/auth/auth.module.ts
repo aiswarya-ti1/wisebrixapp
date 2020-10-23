@@ -17,6 +17,10 @@ import { AssocDashboardComponent } from '../assoc-auth/assoc-dashboard/assoc-das
 import { AssocTenderComponent } from '../assoc-auth/assoc-tender/assoc-tender.component';
 import { AssocHomeComponent } from '../assoc-auth/assoc-home.component';
 import { ComponentsModule } from '../main/components/components.module';
+import { AssocPasswordConfirmComponent } from '../assoc-auth/assoc-pwd-confirm/assoc-pwd-confirm.component';
+
+import { AssocRegisterComponent } from '../assoc-auth/assoc-register/assoc-register.component';
+import { AssocOtpVerificationComponent } from '../assoc-auth/assoc-otp-verification/assoc-otp-verification.component';
 
 
 
@@ -30,7 +34,9 @@ import { ComponentsModule } from '../main/components/components.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent,OtpVerificationComponent,AssocLoginComponent,
-     PasswordConfirmComponent, LandingPageComponent, AssocDashboardComponent,AssocTenderComponent, AssocHomeComponent],
+     PasswordConfirmComponent, LandingPageComponent, AssocDashboardComponent,AssocTenderComponent, 
+     AssocHomeComponent, AssocRegisterComponent,AssocOtpVerificationComponent,AssocPasswordConfirmComponent
+     /*,,*/],
   imports: [
     
     CommonModule,ReactiveFormsModule,FormsModule,
@@ -38,7 +44,9 @@ import { ComponentsModule } from '../main/components/components.module';
   ],
   exports:[RouterModule,ReactiveFormsModule,FormsModule,LandingPageComponent,AssocLoginComponent,
     LoginComponent, RegisterComponent,OtpVerificationComponent,PasswordConfirmComponent,
-    AssocDashboardComponent, AssocTenderComponent,AssocHomeComponent,
+    AssocDashboardComponent, AssocTenderComponent,AssocHomeComponent, AssocRegisterComponent,AssocOtpVerificationComponent,
+    AssocPasswordConfirmComponent
+    /*AssocPasswordConfirmComponent,AssocOtpVerificationComponent,AssocRegisterComponent*/
   ],
   
   entryComponents: [

@@ -1,0 +1,51 @@
+
+.wb-expansion span{
+    float: left;
+  clear: left;
+  
+  
+}
+
+ .wb-expansion mat-expansion-panel-header{
+    padding: 18px 18px;
+   align-items: flex-start;
+   height: auto;
+}
+.wb-expansion mat-icon{
+    font-size: 10px;
+   width:inherit;
+   height:inherit;
+}
+.wb-expansion mat-panel-description{
+    align-items: flex-end;
+}
+mat-panel-description span{
+    width:100%;
+    text-align:right;
+}
+
+.wb-expansion button
+{
+    display: inline-block;
+    height:18px;
+    font-size: 10px;
+    padding:0 9px;
+   line-height: 20px;
+   min-width:40px;
+   margin-right:5px;
+  
+   
+  
+}
+.wb-expansion button:last-child{
+    margin-right:0px;
+    /*so the last one dont push the div thas giving the space only between the inputs*/
+    }
+
+
+
+
+
+
+
+

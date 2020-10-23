@@ -16,7 +16,7 @@ export class AssocHomeComponent {
   Assoc_ID : number;
   
   Work_ID : number;
-  
+  indexTab : number;
   
   
   
@@ -32,8 +32,14 @@ constructor(private breakpointObserver: BreakpointObserver,private storage:Local
  // this.workStorage.clear();
 }
 ngOnInit() {
+  this.g.Work_ID=0;
+  //this.g.index=0;
+  this.indexTab=1;
+ 
  this.Assoc_ID=this.storage.retrieve('AssocID');
+ console.log('Assoc ID'+this.Assoc_ID);
  this.Work_ID=this.g.Work_ID;
+ 
   
  
 }

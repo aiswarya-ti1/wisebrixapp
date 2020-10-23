@@ -10,10 +10,11 @@ import { CustomMaterialModule } from '../custom-material.module';
 import { Routes, RouterModule } from '@angular/router';
 import { TenderComponent } from './tender/tender.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { WorkOrderComponent } from './work-order/work-order.component';
 
 
 @NgModule({
-  declarations: [ HomeComponent, CustomerdashboardComponent, TenderComponent],
+  declarations: [ HomeComponent, CustomerdashboardComponent, TenderComponent, WorkOrderComponent],
   imports: [
     CommonModule,    
     LayoutModule,

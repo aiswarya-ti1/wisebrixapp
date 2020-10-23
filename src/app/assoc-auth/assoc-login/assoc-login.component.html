@@ -5,7 +5,7 @@
 
     
 
-    <mat-card-title >Sign In</mat-card-title>
+    <mat-card-title >Associate Sign In</mat-card-title>
       
   
     <mat-card-content>
@@ -24,7 +24,7 @@
             <p>
               <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="pwd">
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -34,7 +34,7 @@
               
             
             <p><button mat-raised-button color="primary" (click)="assocSignIn(loginForm.value)">Sign In</button></p>
-            <p><a class="link" >Register</a></p>
+            <p><a class="link" [routerLink]="['/assoc-register']">Register</a></p>
           </form>
   </mat-card-content>
 

@@ -80,6 +80,8 @@ export class SingleInputDialogComponent
       else if(this.Type_ID==1)
       {
         this.authService.save_workDays(values).subscribe(result=>{console.log(result);
+          alert('Work duration added successfully!!');
+          this.matDialogRef.close();
         })
       }
       

@@ -18,7 +18,7 @@
         </button>
         <span>W!SEBRIX</span>
       </mat-toolbar>
-      <mat-tab-group>
+      <mat-tab-group  [(selectedIndex)]="this.g.index">
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon>home</mat-icon>
@@ -27,7 +27,7 @@
             <assoc-dashboard></assoc-dashboard>
           </ng-template>
         </mat-tab>
-        <mat-tab *ngIf="this.g.Work_ID!=0">
+        <mat-tab *ngIf="this.g.Work_ID!=0" >
           <ng-template mat-tab-label>
             <mat-icon>dns</mat-icon>
           </ng-template>    

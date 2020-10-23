@@ -10,9 +10,9 @@
       <ng-container matColumnDef="descr">
         <th mat-header-cell *matHeaderCellDef> Work Detail</th>
         <td mat-cell *matCellDef="let row" >
-           <p>{{row.Cust_FirstName}} {{row.Cust_LastName}}<br>
+           <p>
            <i  class="mat-small" style="color:orange" *ngIf="row.WorkDetail">{{row.WorkDetail}}</i><br>
-           <i  class="mat-small" style="color:purple"  *ngIf="row.WorkSpec"> {{row.WorkSpec}}</i>
+           <i  class="mat-small" style="color:purple"  *ngIf="row.WorkSpec"> {{row.WorkSpec}}</i><br>
            <i  class="mat-small" style="color:teal"*ngIf="row.Sch_Site_Visit"> Site Visit Scheduled on {{row.Sch_Site_Visit}}</i><br>
            <i  class="mat-small" style="color:purple" *ngIf="row.Act_Site_Visit"> Site Visited on {{row.Act_Site_Visit}}</i></p>
           </td>

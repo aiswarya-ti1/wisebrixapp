@@ -28,6 +28,8 @@ interface TenderData {
 })
 export class TenderComponent {
   panelOpenState = true;
+  reason=1;
+  paymentFlag:number;
 tenderAssocs:TenderAssocs[];
   constructor(private breakpointObserver: BreakpointObserver,private authService :AuthService,private storage:LocalStorageService,
     private activatedRoute : ActivatedRoute, private g :GlobalConstants, public overlay: Overlay) {}
@@ -41,6 +43,8 @@ tenderAssocs:TenderAssocs[];
   chkPaymentDone(id)
   {
     this.authService.chkPaymentDone(id).subscribe(result=>{console.log(result);
+      this.paymentFlag=result;
+      console.log(this.paymentFlag);
       if(result==0)
       {
         let config = new OverlayConfig();
@@ -52,10 +56,16 @@ tenderAssocs:TenderAssocs[];
     const paymentOverlay = new ComponentPortal(PaymentOverlayComponent);
     overlayRef.attach(paymentOverlay);
     
+    
     overlayRef.backdropClick().subscribe(() => {
+      
       overlayRef.dispose();
+      
+      this.chkPaymentDone(this.g.Work_ID);
     });
       }
+      
+     
     })
   }
   getTenderAssoc(id)
@@ -85,7 +95,8 @@ this.authService.getSelectedTenderAssocs(id).subscribe(result=>{console.log(resu
   }
   rejectAssoc(tID)
   {
-    this.authService.rejectAssoc(tID).subscribe(result=>{console.log(result);
+    
+    this.authService.rejectAssoc(tID, this.reason).subscribe(result=>{console.log(result);
       this.getTenderAssoc(this.g.Work_ID); 
     })
   }
