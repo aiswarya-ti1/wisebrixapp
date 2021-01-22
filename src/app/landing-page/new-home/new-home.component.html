@@ -1,0 +1,120 @@
+
+<app-top-nav></app-top-nav>
+<div class= "grid-container" fxLayout="column">
+  <div class="grid-container" fxFlex="20" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="20px">  
+  <img src="assets/img/wbNewHome.png" alt="" ><h3>New Home</h3>
+</div>
+<div class="grid-container" fxFlex="80"> 
+  
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" novalidate>
+        <input type="text" formControlName="type" hidden>
+        <ng-template matStepLabel>Enter basic details</ng-template>
+       
+          <div class="grid-container" fxLayout="column" fxLayoutGap="50px">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px">
+              <div fxFlex="50">
+               <p class="mat-radio-title"> Plan and Design Ready ? </p>
+                <mat-radio-group aria-label="Select an option" formControlName="plan">
+                  <mat-radio-button value="1">Yes</mat-radio-button>
+                  <mat-radio-button value="2">No</mat-radio-button>
+                </mat-radio-group>
+             </div>
+             <div fxFlex="50">
+              <p class="mat-radio-title"> Planning to start work by </p>
+                <mat-radio-group aria-label="Select an option" formControlName="start">
+                  <mat-radio-button value="1">Immediate</mat-radio-button>
+                  <mat-radio-button value="2">In 3 months</mat-radio-button>
+                  <mat-radio-button value="3">In 6 months</mat-radio-button>
+                  <mat-radio-button value="4">In 1 year</mat-radio-button>
+                </mat-radio-group>
+             </div>
+            </div>
+            
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="50px">
+              <div fxFlex="50">
+                <p class="mat-radio-title"> Total Area </p>
+                <mat-radio-group aria-label="Select an option" formControlName="area">
+                  <mat-radio-button value="1">Less than 2500sqft</mat-radio-button>
+                  <mat-radio-button value="2">2500 to 3000 sqft</mat-radio-button>
+                  <mat-radio-button value="3">3000 to 4000 sqft</mat-radio-button>
+                  <mat-radio-button value="4">More than 4000 sqft</mat-radio-button>
+                </mat-radio-group>
+              </div>
+             <div fxFlex="50">
+              <p class="mat-radio-title"> Number of floors</p>
+                <mat-radio-group  aria-label="Select an option" formControlName="floor">
+                  <mat-radio-button value="1">1</mat-radio-button>
+                  <mat-radio-button value="2">2</mat-radio-button>
+                  <mat-radio-button value="3">3</mat-radio-button>
+                  <mat-radio-button value="4">4</mat-radio-button>
+                </mat-radio-group>
+             </div>
+            </div>
+
+        </div>
+        
+
+        <div class="wbstepperbutton">
+          <button mat-raised-button matStepperPrevious color="accent" (click)="back()" >Back</button>
+          <button mat-raised-button  matStepperNext color="primary" [disabled]="!firstFormGroup.valid">Next</button>
+        </div>
+        
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Finish" >
+      <div class="wbstepperform">
+      <form [formGroup]="secondFormGroup" novalidate>   
+      
+        <div fxLayout="column" fxLayoutGap="15px" class="grid-container" > 
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px" >
+           
+              <mat-form-field appearance="outline" fxFlex="50" >
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="custName" type="text" required>
+                <mat-icon matSuffix>account_circle</mat-icon>
+                <mat-hint>Enter your name</mat-hint>
+              </mat-form-field>
+            
+              <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Email Id</mat-label>
+                <input matInput placeholder="Name" formControlName="email" type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  >
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-hint>Enter your email address</mat-hint>
+              </mat-form-field>
+            
+          </div>    
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
+            
+              <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="Name" formControlName="contact" type="number" required>
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
+             
+              <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Pincode</mat-label>
+                <input matInput placeholder="Name" formControlName="loc" type="number" required pattern="^[1-9][0-9]{5}$">
+                <mat-icon matSuffix>location_on</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
+              
+          </div> 
+        </div>     
+     
+      <div class="wbstepperbutton">
+        <button mat-raised-button matStepperPrevious color="accent">Back</button>
+        <button mat-raised-button  matStepperNext color="primary" [disabled]="!secondFormGroup.valid" (click)="getQuote(firstFormGroup.value, secondFormGroup.value)">Get Quotes</button>
+      </div>
+      </form>
+    </div>
+    </mat-step>
+    
+  </mat-horizontal-stepper>    
+ </div>  
+</div> 
+
+
+

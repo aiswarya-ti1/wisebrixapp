@@ -1,0 +1,31 @@
+.wb-column-left{
+text-align: justify;
+width:70%;
+
+}
+.wb-column-right{
+    text-align: right;
+   height: 100%;
+   width:30%
+}
+ h3{
+    font-weight: normal;
+    color:#ff652f;
+ }
+ th mat-header-cell{
+    text-align: right;
+ }
+ .mat-divider{
+   margin-top: 12px!important;
+   margin-bottom: 12px!important;
+}
+.clickable
+{
+  cursor: pointer;
+  color: blue;
+
+  
+}
+.wb-li-font-large{
+   font-size:16px;
+}

@@ -1,0 +1,13 @@
+<table class="table gap"> 
+  <tr style="border-top: hidden">
+      <th  style="width: 50%">Payment Stages</th>
+      <th class="text-center" style="width: 25%">Amount in Rupees</th>
+      <th class="text-center" style="width: 25%"> Payment Date</th>
+  </tr>
+  <tr  *ngFor="let pay of pays">
+      <td >{{pay.Payment_Phase}}</td>
+      <td class="text-center">{{pay.Amount}}</td>
+      <td class="text-center">{{pay.Payment_Date | date:'dd/MM/yyyy'}}</td>
+  </tr>
+  
+</table>

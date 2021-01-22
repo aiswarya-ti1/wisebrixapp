@@ -1,0 +1,41 @@
+.wbstepperbutton{
+    text-align: center;
+  }
+  .wbstepperbutton button{
+    margin:20px;
+  }
+  .wbstepperform{
+    display: flex !important;
+    justify-content: center!important;
+    align-items: center !important;
+  }
+  .grid-container h3{
+    
+    color:#303030
+  }
+  .grid-container h4{
+    text-align: center;
+    color:#303030;
+    
+  }
+  
+ 
+
+  .selected-card {
+    box-shadow: 0 8px 8px 8px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    background-color: #de5b27 !important;
+    color:white;
+  }
+  .categories:hover {
+    box-shadow: 0 8px 8px 8px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+    transform: translate3d(0,0,0);
+    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    background-color: #de5b27 !important;
+    color:white;
+  }
+  ::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}
+  

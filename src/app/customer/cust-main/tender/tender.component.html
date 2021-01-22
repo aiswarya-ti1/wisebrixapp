@@ -1,0 +1,129 @@
+<div class="grid-container" fxLayout="column" fxLayoutGap="1rem">
+  <div fxFlex="20%"><h1 class="mat-h1">Your Best Quotes Received</h1></div>
+<div class="container" fxFlex="80%" fxLayout="row" fxLayout.xs="column"  fxLayoutGap="1rem" fxLayoutAlign="center">
+  <div fxFlex="70%" fxLayout="column" fxLayoutGap="10px">
+    
+    <div *ngFor="let assoc of tenderAssocs" >
+      <mat-accordion>
+        <mat-expansion-panel >
+          <mat-expansion-panel-header >
+            <div fxLayout="row" fxLayout.xs="column" style="width: 100%;">
+            <div fxFlex="1 2 auto">
+                      
+             <div fxLayout="column" class="assoc-details">
+               <div fxLayout="row" fxLayoutGap="15%" style="width:100%;" fxLayoutAlign="start center">
+                <div ><mat-icon class="assoc-icon"color="primary">account_circle</mat-icon></div> 
+                <div fxLayout="column">
+                  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">                  
+                    <div >{{assoc.Assoc_Code}}</div>
+                    <div><mat-icon class="wb-green">verified</mat-icon></div>
+                  </div>
+                  <div>
+                    <span  class="wb-orange">
+                      <mat-icon class="rating">star</mat-icon>
+                      <mat-icon class="rating">star</mat-icon>
+                      <mat-icon class="rating">star</mat-icon>
+                      <mat-icon class="rating">star_half</mat-icon>
+                    </span>
+                  </div>
+                </div>
+               </div>
+              
+              
+               <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                <div>
+                  <mat-icon color="accent" class="details_icon">room</mat-icon> </div>
+                <div>
+                  <span  class="mat-small wb-grey" >{{assoc.Address_town}}</span>
+                </div>
+              </div> 
+              <div *ngIf="assoc.SelectStatus!=2 && !assoc.Sch_Site_Visit && this.paymentFlag!=0 && assoc.ReqSiteVisit_Flag==1" 
+                    fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="wb-purple">
+                <div>
+                  <mat-icon class="details_icon">schedule</mat-icon> </div>
+                <div><span  > 
+                  Scheduling Associate Visit</span></div>
+               </div>         
+               
+               <div *ngIf="assoc.Sch_Site_Visit && !assoc.Act_Site_Visit"
+                    fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="wb-purple">
+                <div>
+                  <mat-icon  class="details_icon">schedule</mat-icon> </div>
+                <div><span > 
+                  Site Visit Scheduled on {{assoc.Sch_Site_Visit}}</span></div>
+               </div>
+               <div *ngIf="assoc.Act_Site_Visit" 
+                    fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="wb-purple">
+                <div>
+                  <mat-icon class="details_icon">done</mat-icon> </div>
+                <div><span> 
+                  Site Visited on {{assoc.Act_Site_Visit}}</span></div>
+               </div>                               
+               <div 
+                    fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="wb-green" *ngIf="this.StatusName && assoc.SelectStatus==1">
+                <div >
+                  <mat-icon class="details_icon">arrow_circle_down</mat-icon> </div>
+                <div ><span> 
+                 {{this.StatusName}}</span></div>
+               </div> 
+              
+                                   
+
+            </div>
+           
+          </div>
+          <mat-divider></mat-divider>
+          <div fxFlex="1 2 auto" fxLayoutGap="5px" fxLayout="column" fxLayout.xs="row" class="assoc-rate" fxLayoutAlign="start end">
+               
+           <div><span class="wb-primary" *ngIf="this.paymentFlag!=0">Rs.{{assoc.TotalQuote}}</span>
+           <span class="wb-primary" *ngIf="this.paymentFlag==0" style=" font-size: 15px;
+            color: transparent;
+            text-shadow: 0 0 11px #000;">Rs.99,999</span></div>
+            <div><span class="mat-small wb-accent" *ngIf="this.paymentFlag!=0">{{assoc.Work_Days}} days </span></div> 
+        </div>
+        <!--Alter the condition for fxHide - show this div only if buttons needs to be shown and for selected tender-->
+          <div fxShow="assoc.SelectStatus || !assoc.Sch_Site_Visit || this.paymentFlag!=0 || assoc.ReqSiteVisit_Flag==0 ||assoc.WorkStatus==14 ||assoc.Act_Site_Visit!=null" class="wb-buttons" fxFlex="1 2 auto" fxLayout="column" fxLayout.xs="row" fxLayoutAlign="start end" fxLayoutGap="5px">
+           
+            
+            <div *ngIf="assoc.SelectStatus!=2 && !assoc.Sch_Site_Visit && this.paymentFlag!=0 && assoc.ReqSiteVisit_Flag==0" >
+               <button mat-raised-button color="primary"  [disabled]="(this.g.Assoc_ID && this.g.Assoc_ID != assoc.Assoc_ID) ||assoc.ReqSiteVisit_Flag!=0 " (click)="reqSiteVisit(assoc.Assoc_ID)">Request Visit</button>
+            </div>
+            <div *ngIf="assoc.SelectStatus==2" >
+              <button mat-raised-button  color="wb-purple" >Rejected</button>
+            </div>
+            <div *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus==0">
+              <button mat-raised-button  color="primary"   (click)="confirmAssoc(assoc.WorkTender_ID)">Confirm</button>
+            </div>
+            <div  *ngIf="assoc.Act_Site_Visit!=null && assoc.SelectStatus==0" >
+              <button mat-raised-button  color="accent" (click)="rejectAssoc(assoc.WorkTender_ID)">Reject</button>
+            </div>
+            <div  *ngIf="assoc.SelectStatus==1 && assoc.WorkStatus==14" >
+              <button mat-raised-button  color="primary" >Sign Up</button>
+            </div>
+                       
+          </div>
+          </div>
+          </mat-expansion-panel-header>
+      
+          <app-lineitemdisplay *ngIf="this.paymentFlag!=0" tid={{assoc.WorkTender_ID}}, type="1"></app-lineitemdisplay> 
+            
+        </mat-expansion-panel>
+        
+      </mat-accordion>
+    </div>
+    
+  </div> 
+  <div class="container" fxLayout="column" fxLayoutWrap 
+      fxFlex="30%"fxLayoutGap="1rem">   
+         
+          <div >
+          <app-keydeliverables></app-keydeliverables>
+          </div>
+          <div >
+          <app-termsandconditions></app-termsandconditions>
+          </div>   
+               
+  </div>
+</div>
+
+  

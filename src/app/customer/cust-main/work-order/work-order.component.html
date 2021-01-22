@@ -1,0 +1,145 @@
+<!--Change the concerned api call to get only the selected tender. After using it, remove the second div
+which is just used for checking the select status condition-->
+<div class="work-order-main-container"  *ngFor="let assoc of tenderAssocs">
+    <div *ngIf="assoc.SelectStatus==1" fxLayout="column" fxLayoutGap="2rem">
+    <div class="wo-header" fxLayout="row" fxLayout.xs="column" fxLayoutGap="12px" >
+      <div fxFlex="50%" fxLayoutAlign="center center" >
+        <div class="img-container"><img  src="assets/img/wblogo.png" alt="WiseBrix"></div> </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-divider ></mat-divider>
+      <div fxFlex="50%"  fxLayoutAlign="center center"  >  
+        <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="start">
+          <div class="wb-large wb-grey">Work Order No: {{assoc.Work_ID}}</div>
+          <div>Issued Date: {{this.IssueDate | date:'dd/MM/yyyy'}}</div>
+          <div>Work Location: {{assoc.Address_town}}</div>
+          <div *ngIf="this.WorkType">Work Scope: {{this.WorkType}}</div>
+      </div>    
+      </div>
+    </div>
+    <mat-divider ></mat-divider>
+    <div class="statement"><p>This agreement is made on <b>todays date</b> between</p></div>
+    <div class="parties" fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%">
+      <div fxFlex="45%" [fxLayoutAlign]="this.custAddressAlign" *ngFor="let cust of custDetails" fxLayout="column">      
+        <div class="address"><b>{{cust.Cust_FirstName}} {{cust.Cust_MidName}} {{cust.Cust_LastName}}</b></div>
+        <div class="address">{{cust.Loc_Name}}</div>
+        <div class="address" *ngIf="cust.Contact_phone"><mat-icon color="primary">call</mat-icon> {{cust.Contact_phone}}</div>
+        <div class="party customer">
+          <span>Here in after called the OWNER, which term shall include his assigns and successors</span></div>
+      </div>
+      <div class="and" fxFlex="10%" fxLayoutAlign="center start">
+        <span color="primay">and</span>
+      </div>
+      <div fxFlex="45%"  *ngIf="assoc.SelectStatus==1" fxLayout="column" [fxLayoutAlign]="this.assocAddressAlign">
+        <div class="address"><b>{{assoc.Assoc_FirstName}} {{assoc.Assoc_LastName}}</b></div>
+          <div class="address">{{assoc.Address_town}}</div>
+          <div class="address" *ngIf="assoc.Contact_phone"><mat-icon color="primary">call</mat-icon> {{assoc.Contact_phone}}</div>
+          <div  class="party contractor" fxLayoutAlign="end end">
+            <span>Here in after refered to as CONTRACTOR which term shall include his assigns and successors for the Performance of Services as refered to in the SCOPE OF WORK in Accordance with the Terms & Conditions Stipulated herein</span>
+          </div>
+      </div>
+    </div>
+    <!--Specifications  in work order-->
+    <div class="lineitems">
+      <app-lineitemdisplay tid={{assoc.WorkTender_ID}}, type="3"></app-lineitemdisplay> 
+    </div>
+    <!--Keydeliverables in work order-->
+    <div class="Key-deliverables">
+      <app-keydeliverables></app-keydeliverables>
+    </div>
+    <!--Terms & Conditions in work order-->
+    <div>    
+      <mat-card >
+        <mat-card-header color="primary">
+            <mat-card-title>Terms and Conditions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayout="column">
+          <div class="terms"  fxLayout="column">
+              <div ><h3>1. Exclusive Agreement </h3></div>
+              <div >This Work Order (W.O) constitutes the exclusive agreement between the parties hereto. Any Special terms and conditions mentioned in the W.O shall take precedence over these Standard Terms and 'Conditions'.These ‘Standard Terms and Conditions’ cannot be changed without prior written consent of both parties. Additionally, the goods and services shall conform to specifications,drawings and any other description attached hereto and shall be free from defects in materials and workmanship.</div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>2. Work Timings </h3></div>
+            <div >The normal site working timing shall be 8 am to 6 Pm , however the contractor have privilege to extend the work time by provide special request to the customer</div>
+            <div>
+                <work-schedule></work-schedule>
+            </div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>3. Payment </h3></div>
+            <div >Customer has to transfer the agreed contract value as per the payment schedule mentioned in the work order only to the escrow account of M/s Infrasynergics Private limited with Account details as mentioned below for making payments to contractors/associates & material vendors Account Name: Infrasynergics Private Limited Account Number:4805002100001029 Bank: Punjab National bank Branch: Kolenchery IFSC:PUNB0480500 All payments will be made directly to the contractor/associate after verifying work quality & stage based completion. The customer is not liable to pay any fee, commissions or any other payments other than the agreed contract value for the works mentioned in the work order.</div>
+            <div>
+                <pay-schedule></pay-schedule>
+            </div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>4. Rejection/Termination </h3></div>
+            <div >
+              <ul>
+                <li>The customer can terminate the work order on the following:
+                  <ul>
+                    <li>Misbehavior during work time.               
+                    </li>
+                    <li>Mishandling the materials.               
+                    </li>
+                  </ul>               
+                </li>
+                <li>The Associate can terminate the work order on the following:
+                  <ul>
+                    <li>Misbehavior during work time.              
+                    </li>
+                    <li>Not receiving the payment as agreed.              
+                    </li>
+                  </ul>               
+                </li>
+              </ul>           
+            </div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>5. Cancellation</h3></div>
+            <div >WiseBrix reserves the right to cancel this W.O, by giving notification to the Associate.</div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>6. Safety Measures</h3></div>
+            <div >During the site work the sub-Contract(Associate) need to follow the basic safety rules in the construction industries. If the sub-Contract(Associate) employees who are working on roof,balcony they should wear safety belt. Any Issue/Accidents in the site will be under the risk of 2nd Party(Contractor)</div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>7. Storage</h3></div>
+            <div >The customer has to provide sufficient secured storage space to the contractor free of cost.</div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>8. Amendments</h3></div>
+            <div >Changes in the scope, specification, work schedule etc should be brought to the notice of Wisebrix by both Customer & Contractor & should be incorporated in the agreement as amendment.</div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>9. First Aid Kit</h3></div>
+            <div >First Aid Kit will be provided by 1st Party(Customer)</div>
+          </div> 
+          <div class="terms" fxLayout="column">
+            <div ><h3>10. Legal</h3></div>
+            <div >If at any time a dispute, difference, or disagreement shall arise between the parties either parties can approach a court of law. In Lieu of breaching this work order neither party shall take any legal action against the third party.</div>
+          </div> 
+          <div class="terms" fxLayout="column" > 
+            <div ><h3>11. Other Terms and Conditions</h3></div>
+           <div class="other-terms" *ngFor="let term of terms let i = index">
+             {{i+1}}. {{term.Term_Name}}</div>
+          </div>
+                
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxLayout="column" fxLayoutGap="5%" fxLayoutAlign="center center">
+      <div fxLayout="row" fxLayoutGap="10px">
+        
+          <mat-checkbox  color="primary" ></mat-checkbox>
+        
+        <div class="terms-check">I agree to the terms and conditions mentioned in this work order agreement and here by sign up</div>
+      </div>
+      <div><button mat-raised-button  color="primary" >Sign Up</button></div>
+    </div>
+  </div>
+  </div>
+  
+  
+  
+  
+    

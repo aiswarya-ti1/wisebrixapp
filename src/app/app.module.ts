@@ -6,113 +6,110 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { CustomMaterialModule } from './custom-material.module';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PasswordConfirmComponent } from './auth/pwd-confirm/pwd-confirm.component';
-
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { HomeComponent } from './main/home.component';
-import { HomeModule } from './main/home.module';
-import { AssocLoginComponent } from './assoc-auth/assoc-login/assoc-login.component';
-//import { AngularWebStorageModule } from 'angular-web-storage';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { GlobalConstants } from './main/globalConstants';
-import { AssocDashboardComponent } from './assoc-auth/assoc-dashboard/assoc-dashboard.component';
-import { AssocHomeComponent } from './assoc-auth/assoc-home.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { AssocRegisterComponent } from './assoc-auth/assoc-register/assoc-register.component';
-import { AssocPasswordConfirmComponent } from './assoc-auth/assoc-pwd-confirm/assoc-pwd-confirm.component';
-import { AssocOtpVerificationComponent } from './assoc-auth/assoc-otp-verification/assoc-otp-verification.component';
 import { AuthGuard } from './auth.guard';
 import { HttpInterceptorHandler } from '@angular/common/http/src/interceptor';
 import { TokenInterceptorService } from './token-interceptor.service';
-import { PaymentsComponent } from './payments/payments.component';
+
 import { MatSnackBarModule } from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper';
+import { GlobalConstants } from './customer/cust-main/globalConstants';
+import { AssociateModule } from './associate/associate.module';
+import { CustomerModule } from './customer/customer.module';
+import { LandingPageModule } from './landing-page/landing-page.module';
 
-
-
-const routes:Routes = [
+const appRoutes: Routes = [
+ 
   {
-    path :'login',
-    component : LoginComponent,
-    
-  },
+    path: 'login',
+    loadChildren :'./customer/cust-auth/login/login.module#LoginModule'
+},
+{
+  path : 'otp/:name',
+loadChildren :'./customer/cust-auth/otp-verification/otp-verification.module#OtpVerificationModule'
+
+},
+{
+  path : 'confirm-pwd/:name',
+loadChildren :'./customer/cust-auth/pwd-confirm/pwd-confirm.module#PwdConfirmModule'
+
+},
+{
+  path     : 'register',
+  loadChildren: './customer/cust-auth/register/register.module#RegisterModule'
+},
+{
+  path: 'home',
+  loadChildren :'./customer/cust-main/cust-main.module#CustMainModule'
+},
+
   {
-    path :'assoc-login',
-    component : AssocLoginComponent
-  },
+    path: 'assoc-login',
+    loadChildren :'./associate/assoc-auth/assoc-auth.module#AssocAuthModule'
+},
   {
-    path     : 'register',
-    component: RegisterComponent,
-    
-},
-{
-    path     : 'assoc-register',
-    component: AssocRegisterComponent
-},
-{
-  path     : 'otp/:name',
-  component: OtpVerificationComponent,
-  
-}
-,
-{
-  path     : 'assoc-otp/:name',
-  component: AssocOtpVerificationComponent
-},
-{
-  path     : 'confirm-pwd/:name',
-  component: PasswordConfirmComponent,
-  
-},
-{
-  path     : 'assoc-confirm-pwd/:name',
-  component: AssocPasswordConfirmComponent
-},
-{
-  path     : 'landing-page',
-  component: LandingPageComponent
-},
-{
-  path     : 'assoc-home',
-  component: AssocHomeComponent
-}
-,
-{
-  path :'home',
-  component :HomeComponent,
-  //canActivate: [AuthGuard]
-},
-{ path: '', redirectTo: '/landing-page', pathMatch: 'full' }
+path : 'assoc-otp/:name',
+loadChildren :'./associate/assoc-auth/assoc-otp-verification/assoc-otp-verification.module#AssocOtpVerificationModule'
 
+},
+{
+  path : 'assoc-confirm-pwd/:name',
+loadChildren :'./associate/assoc-auth/assoc-pwd-confirm/assoc-pwd-confirm.module#AssocPwdConfirmModule'
 
+},
+{
+  path     : 'assoc-register',
+  loadChildren: './associate/assoc-auth/assoc-register/assoc-register.module#AssocRegisterModule'
+},
 
+{
+  path: 'assoc-home',
+  loadChildren :'./associate/assoc-main/assoc-main.module#AssocMainModule'
+},
+{
+    path: 'landing-page',
+    loadChildren :'./landing-page/landing-page.module#LandingPageModule'
+},
+{
+  path: 'new-home',
+  loadChildren :'./landing-page/new-home/new-home.module#NewHomeModule'
+},
+{
+path: 'renovation',
+loadChildren :'./landing-page/renovation/renovation.module#RenovationModule'
+},
+  { path: '', redirectTo: '/landing-page', pathMatch: 'full' }
+ 
 ];
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaymentsComponent,
+    
+    
+    
+    
+    
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,ReactiveFormsModule,HomeModule,
-    AuthModule,FormsModule,
-    BrowserAnimationsModule,
-    CustomMaterialModule,MatSnackBarModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    BrowserAnimationsModule,HttpClientModule,
+    
+    
+    RouterModule.forRoot(appRoutes),
     NgxWebstorageModule.forRoot(),
-    FlexLayoutModule
-     
+    
+
 
   ],
-  providers: [HttpClientModule, GlobalConstants,{provide: LocationStrategy, 
+  exports:[RouterModule,BrowserAnimationsModule],
+  providers: [HttpClientModule, GlobalConstants,
+    {provide: LocationStrategy, 
     useClass: HashLocationStrategy,},
     /*{
       provide : HTTP_INTERCEPTORS,
@@ -123,5 +120,10 @@ const routes:Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor()
+  {
+    console.log('App Module loaded');
+  }
+}
 /**/

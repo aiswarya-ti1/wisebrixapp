@@ -1,0 +1,51 @@
+
+
+.mat-expansion-panel-header{
+       
+    height: 100% !important;
+    margin-top: 15px;
+    margin-bottom:15px
+}
+.rating {
+ font-size:20px!important;
+ height:auto;
+ width:auto;
+}
+.details_icon {
+ font-size:20px!important;
+ height:auto;
+ width:auto;
+}
+.assoc-icon{
+ font-size: 60px;
+}
+.assoc-details{
+/* min-width: 360px;*/
+}
+:host ::ng-deep .mat-expansion-indicator{
+ align-self:flex-end!important;
+}
+/*@media only screen and (max-width: 600px) {
+ :host ::ng-deep .mat-expansion-indicator{
+     align-self:flex-start!important;
+ }
+}*/
+.mat-divider{
+ margin-top: 10px;
+ margin-bottom: 10px;
+}
+@media only screen and (max-width: 600px) {
+ .wb-buttons{
+     margin-top:10px;
+ }
+}
+
+ 
+
+
+
+
+
+
+
+

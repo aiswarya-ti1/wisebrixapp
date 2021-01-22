@@ -1,0 +1,21 @@
+<mat-card>
+  
+  <mat-card-header><mat-card-title>Payment</mat-card-title></mat-card-header>
+  <mat-divider [inset]="true"></mat-divider>
+  <mat-card-content >
+
+    <p class="wb-grey">Please make the below payment to view your received tender amounts</p>
+    <h2 >Rs 150</h2>
+    
+    <button mat-raised-button color="primary" (click)="initPay()">Make Payment</button>
+  </mat-card-content>
+  <a mat-button color="primary"  (click)="closeDialog()">Close</a>
+</mat-card>
+<form name="hiddenForm" [formGroup]="hiddenForm"  hidden>
+  <input  matInput formControlName="h_id" >
+  <input  matInput formControlName="o_id" >
+  <input  matInput formControlName="p_id" >
+  <input  matInput formControlName="sign">
+  
+
+</form>

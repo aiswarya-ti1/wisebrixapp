@@ -1,0 +1,16 @@
+<div class="grid-container">
+<mat-card >  
+  <mat-card-content>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+      <img src="assets/img/timeline/{{slide}}.png" alt="" >
+    </div>
+  </ngx-slick-carousel>
+   
+  </mat-card-content>
+</mat-card>
+</div>
+
+
+  

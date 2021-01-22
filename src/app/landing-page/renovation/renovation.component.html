@@ -1,0 +1,104 @@
+
+<app-top-nav></app-top-nav>
+<div class= "grid-container" fxLayout="column">
+<div class="grid-container" fxFlex="20" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="20px"> 
+  
+  <img src="assets/img/wbRenovation.png" alt="" ><h3>Renovation & Extention</h3>
+</div>
+<div class="grid-container" fxFlex="80"> 
+  
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      
+        <ng-template matStepLabel>Select Category</ng-template>
+       
+        <form [formGroup]="firstFormGroup">
+          <input type="text" formControlName="type" hidden>
+            <div  fxLayout="row wrap" fxLayoutGap="16px grid" class="grid-container">
+              <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let cat of category">
+                <mat-card class="categories" 
+                  (click)="select(cat,stepper)" [ngClass]="{'selected-card':cardSelected ===cat.Enq_Cat_ID}">                 
+                <img mat-card-image src='{{"assets/img/categorytiles/"+cat.Cat_Name+".png"}}'>              
+                <mat-card-content >
+                  <h4>
+                    {{cat.Cat_Name}}                    
+                  </h4>                  
+                </mat-card-content>
+              
+              </mat-card>
+              </div>           
+              
+            </div> 
+
+            <div class="wbstepperbutton">
+          <button mat-raised-button matStepperPrevious color="accent"(click)="back()">Back</button>
+          <button mat-raised-button  matStepperNext color="primary" (click)="nextButton()" >Next</button>
+        </div>
+        </form>
+      
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Finish">
+      <div class="wbstepperform" fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px" >
+        <div fxFlex="27"   fxLayoutAlign="center">
+          <img  src='{{"assets/img/categorytiles/"+this.cat_name+"_Confirm.png"}}'> 
+        </div>
+        <div fxFlex="3">
+         <mat-divider [vertical]="true"></mat-divider>
+        </div>
+        <div fxFlex="70">
+      <form [formGroup]="secondFormGroup" >   
+      
+        <div fxLayout="column" fxLayoutGap="15px" class="grid-container" >                  
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px" > 
+            
+            <input type="text" formControlName="category" hidden>          
+           
+              <mat-form-field appearance="outline" fxFlex="50" >
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="custName" type="text">
+                <mat-icon matSuffix>account_circle</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
+            
+              <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Email Id</mat-label>
+                <input matInput placeholder="Email" formControlName="email" type="email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
+            
+          </div>    
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
+            
+              <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="Phone" formControlName="contact" type="number">
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
+             
+              <mat-form-field appearance="outline" fxFlex="50">
+                <mat-label>Pincode</mat-label>
+                <input matInput placeholder="Pincode" formControlName="loc" type="number"  pattern="^[1-9][0-9]{5}$">
+                <mat-icon matSuffix>location_on</mat-icon>
+                <mat-hint>Hint</mat-hint>
+              </mat-form-field>
+              
+          </div> 
+        </div>     
+     
+      <div class="wbstepperbutton">
+        <button mat-raised-button matStepperPrevious color="accent" >Back</button>
+        <button mat-raised-button  matStepperNext color="primary" [disabled]="!secondFormGroup.valid" (click)="getQuote(firstFormGroup.value, secondFormGroup.value)">Get Quotes</button>
+      </div>
+      </form>
+    </div>
+    </div>
+    </mat-step>
+    
+  </mat-horizontal-stepper>    
+ </div>  
+</div> 
+
+
+

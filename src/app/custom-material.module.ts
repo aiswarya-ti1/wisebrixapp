@@ -30,7 +30,7 @@ import { MatDialogModule } from '@angular/material';
 
 @NgModule({
    imports: [
-      CommonModule,
+      
       MatButtonModule,
       MatToolbarModule,
       MatIconModule,

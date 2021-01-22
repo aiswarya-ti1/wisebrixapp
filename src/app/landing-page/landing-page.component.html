@@ -1,106 +1,57 @@
+<app-top-nav></app-top-nav>
 
-<mat-card class="login-card">
-    
-  <img mat-card-image src="assets/img/wblogo.jpg" alt="WiseBrix">
+<!--<div class= "grid-container" >
+  <div class="container">
+    <app-back-button></app-back-button>
+  </div>
+  <div class="container">
+  <mat-grid-list cols="2" rowHeight="2:1" gutterSize="10px">     
+      <mat-grid-tile >   
+          <a href="/#new-home"   role="button"  class="mx-2">
+          <img  src="assets/img/newhome.png" alt="New Home">  </a>        
+      </mat-grid-tile>
+      <mat-grid-tile>   
+          <a href="#" role="button">
+        <img  src="assets/img/renovation.png" alt="Renovation" class="mx-2"> </a>    
+      </mat-grid-tile>      
+  </mat-grid-list>  
+  </div>    
+</div>-->
 
-  
-
-  <mat-card-title >Register</mat-card-title>
-    
-
-  <mat-card-content>
-   
-  <form name="loginForm" [formGroup]="registerForm" >
-    <p><a class="link" [routerLink]="['/login']">Login</a></p>
-          <p>
-            <mat-form-field appearance="outline">
-              <mat-label>Type</mat-label>
-              <mat-select formControlName="type" (ngModelChange)="onChange($event)">
-                <mat-option  [value]="1" >New Home</mat-option>
-                <mat-option  [value]="2" >Renovation</mat-option>
-                
-                </mat-select>
+  <div class="grid-container" fxLayout="column"  fxLayoutGap="5px" minHeight="1000px">
+    <div fxFlex="30">
+        <app-back-button type="1"></app-back-button>
+    </div>
+    <div  class="flex-container" fxFlex="30"> 
+      
+      <div fxLayout="row"  fxLayout.xs="column" fxLayoutGap="5%" fxLayoutAlign="center center">
               
-            </mat-form-field>
-          </p>
-          <div *ngIf="this.type==1">
-          <p>
-            <mat-form-field appearance="outline">
-              <mat-label>Plan & estimate ready</mat-label>
-              <mat-select formControlName="plan">
-                <mat-option  [value]="0" >No</mat-option>
-                <mat-option  [value]="1" >Yes</mat-option>
-               
-                </mat-select>
-              
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="outline">
-              <mat-label>Planning to start work by</mat-label>
-              <mat-select formControlName="start">
-                <mat-option  [value]="2020" >2020</mat-option>
-                <mat-option  [value]="2021" >2021</mat-option>
-                <mat-option  [value]="2022" >2022</mat-option>
-                </mat-select>
-              
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field appearance="outline">
-              <mat-label>Total Area</mat-label>
-             <input type="number"matInput formControlName="area">
-              
-            </mat-form-field>
-          </p>
-          
-          <p>
-            <mat-form-field appearance="outline">
-              <mat-label>No. of floors</mat-label>
-             <input type="number" matInput formControlName="floor">
-              
-            </mat-form-field>
-          </p>
-        </div>
-        <div  *ngIf="this.type==2">
-          <p>
-            <mat-form-field appearance="outline">
-              <mat-label>Renov.  Categories</mat-label>
-          <mat-select formControlName="category">
-            <mat-option *ngFor="let cat of category" [value]="cat.Enq_Cat_ID" > {{cat.Cat_Name}}</mat-option>
-            
-            </mat-select>
-            </mat-form-field>
-            </p>
-        </div>
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Customer Name</mat-label>
-           <input matInput type="text" formControlName="custName">
-            
-          </mat-form-field>
-        </p>
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Contact</mat-label>
-           <input type="number"matInput formControlName="contact">
-            
-          </mat-form-field>
-        </p>
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Location</mat-label>
-        <mat-select formControlName="loc">
-          <mat-option *ngFor="let loc of location" [value]="loc.Loc_ID" >{{loc.Loc_Name}}</mat-option>
-          
-          </mat-select>
-          </mat-form-field>
-          </p>
-          
-          <button type="button" mat-raised-button color="primary" (click)="getFreeSpec(registerForm.value)">Get Free Specification</button>
+        <div  fxFlex="20%" fxFlex.xs="100%" class="categories">
+          <mat-card  matRipple (click)="onCardClick(1)" #newhome>           
+          <img mat-card-image src="assets/img/newhome.png">              
+          <mat-card-content >
+            <p>
+              New Home                   
+            </p>                  
+          </mat-card-content>        
+         </mat-card >
+        </div>  
+        <div  fxFlex="20%" fxFlex.xs="100%" class="categories">
+          <mat-card (click)="onCardClick(2)" #renovation>                 
+          <img mat-card-image src="assets/img/renovation.png">              
+          <mat-card-content >
+            <p>
+              Renovation                   
+            </p>                  
+          </mat-card-content>
+        
+        </mat-card>
+        </div>  
+        
          
-        </form>
-</mat-card-content>
-
-
-</mat-card>
+       </div>
+      
+    </div>
+    
+    
+  </div>

@@ -1,0 +1,56 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      >
+    <mat-toolbar>
+      <img mat-card-image src="assets/img/wblogo.jpg" alt="WiseBrix">
+    </mat-toolbar>
+    <mat-nav-list>        
+      <a mat-list-item href="#" (click)="logout()">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar >       
+      <button mat-icon-button (click)="sidenav.toggle()" >
+      <mat-icon color="accent">menu</mat-icon>
+      </button>
+      <img style="max-height:30%;" src="assets/img/wblogo.png" alt="WiseBrix">      
+      <div class="right-menu" fxLayout="row" fxLayoutGap="12px" >
+        <div fxLayoutAlign="end center">
+        <span ><!--code here to display the first name-->{{this.CustName}}</span></div>
+        <div fxLayoutAlign="end center">
+         <button mat-icon-button (click)="logout()"><mat-icon color="accent">logout</mat-icon></button></div>
+      </div>
+    </mat-toolbar>
+    
+    <mat-tab-group  [(selectedIndex)]="this.g.index" #tabGroup>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>home</mat-icon>
+        </ng-template>      
+        <ng-template matTabContent>
+          <app-customerdashboard></app-customerdashboard>
+        </ng-template>
+      </mat-tab>
+      <mat-tab *ngIf="this.g.Work_ID!=0">
+        <ng-template mat-tab-label>
+          <mat-icon>dns</mat-icon>
+        </ng-template>    
+        <ng-template matTabContent>
+          <app-tender></app-tender>
+        </ng-template>
+      </mat-tab>
+      <mat-tab *ngIf="this.g.Status==12">
+        <ng-template mat-tab-label>
+          <mat-icon>receipt</mat-icon>
+        </ng-template>    
+        <ng-template matTabContent>
+          <work-order></work-order>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+    <!--<router-outlet></router-outlet>-->
+    
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

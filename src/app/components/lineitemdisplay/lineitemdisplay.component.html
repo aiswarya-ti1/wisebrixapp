@@ -1,0 +1,48 @@
+<div *ngIf="this.Type_ID==3">
+  <h3>Work Order Specifications</h3>
+  </div>
+  <!--PLease alter below if condition based on actual type values (for assoc- "Work Specifications", for cust-"Tender Details")-->
+  <div *ngIf="this.Type_ID==2">
+    <h3>Work Specifications</h3>
+    </div>
+    <div *ngIf="this.Type_ID==1">
+      <h3>Specifications</h3>
+      </div>
+  <div  fxLayout="row"  fxLayoutGap="1%">
+    <div fxFlex=50>
+      <span class="wb-grey">Specificaiton & Measurement</span>
+    </div>
+    <div fxFlex=50 fxLayoutAlign="end center">
+      <span class="wb-grey">Amount</span>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  
+  <div fxLayout="column" *ngFor="let row of dataSource">  
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="5%" >    
+      <div fxFlex="70%" fxLayout="column" fxLayoutGap="1%" >
+        <div class="wb-grey">{{row.LineItem_Name}}</div>
+        <div class="mat-small wb-light-grey">{{row.Comments}}</div>
+        <div class="wb-purple" *ngIf="row.Quantity">{{row.Quantity}} {{row.Unit_Code}}</div>
+      </div>    
+      <div fxFlex="30%" fxLayout="column"  fxLayout.xs="row"  fxLayoutAlign="start end">
+        <div class="wb-green" *ngIf="row.Value" fxLayoutAlign="end start">Rs. {{row.Value}}</div>
+        <div class="wb-primary mat-small" *ngIf="row.Rate" fxLayoutAlign="end start">&nbsp;(Rs. {{row.Rate}} per {{row.Unit_Code}})</div>
+        <div><a class="clickable" *ngIf="row.Rate && this.Role_ID==11 &&  row.TenderFinish_Flag==0" (click)="addRate(row.WorkTenderLab_ID,2)">Edit</a></div>
+      </div>   
+      <div fxFlex="30%" fxLayout="column" *ngIf="row.Quantity && this.Role_ID==11 && !row.Rate"  fxLayout.xs="row"  fxLayoutAlign="start end">
+        <button mat-raised-button  color="primary" (click)="addRate(row.WorkTenderLab_ID,1)" >Update Rate</button>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <!--*ngIf="this.Total!=0 && this.Type_ID==2"-->
+  <div   fxLayout="row" fxLayoutGap="5%" class="wb-margin-top wb-margin-bottom">  
+    <div  fxFlex="20%"> TOTAL </div>
+    <div class="wb-large wb-grey" fxFlex="80%" fxLayoutAlign="end start"> Rs. {{this.Total}} </div>
+  </div> 
+  <div  fxLayout="row"fxLayoutGap="5%" fxLayout.xs="column" class="wb-margin-bottom">  
+    <div fxFlex="20%"> In Words </div>
+    <div class="wb-medium wb-grey" fxFlex="80%" fxLayoutAlign="end start">Rupees {{this.words}}  </div>
+  </div>
+   

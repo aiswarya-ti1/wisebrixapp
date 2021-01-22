@@ -1,39 +1,36 @@
-.login-card {
-    max-width: 300px;
-    
-     
-  }
-  .login-header-image {
-    background-image: url('C://Angular/wbcustomerapp/src/assets/wblogo.jpg');
-    background-size: cover;
-  }
-  :host {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0px;
-  }
 
-  .mat-form-field {
-    width: 100%;
-    min-width: 300px;
-  }
-
-  mat-card-title,
-  mat-card-content {
-    display: flex;
-    justify-content: center;
-  }
-
-  .error {
-    padding: 16px;
-    width: 300px;
-    color: white;
-    background-color: red;
-  }
-
-  .button {
-    display: flex;
-    justify-content: flex-end;
-  }
+.flex-container{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.grid-container{
+  min-height:300px;
+}
+.grid-container h4{
+  text-align: center;
+  color:#303030;
   
+}
+.flex-container{
+  padding-left:16px;
+}
+
+.mat-card{
   
+  box-shadow: 0 8px 8px 8px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+  background-color: #de5b27 !important;
+  color:white;
+}
+
+.mat-card:hover{
+  
+  box-shadow: 0 15px 15px 15px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+  transform: translate3d(0,0,0);
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  
+
+}
+
+.mat-card-content{
+  text-align:center;
+}

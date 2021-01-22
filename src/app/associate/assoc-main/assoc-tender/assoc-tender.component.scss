@@ -1,0 +1,56 @@
+
+.main-container{
+  max-width: 100%;
+  background-color: #ffffff;
+  padding:25px;
+  font-size: 15px;
+  border-radius: 4px;
+}
+
+.details_icon {
+  font-size:20px!important;
+  height:auto;
+  width:auto;
+}
+.assoc-icon{
+  font-size: 70px;
+  height:auto;
+  width:auto;
+}
+.assoc-details{
+  min-width: 360px;
+}
+:host ::ng-deep .mat-expansion-indicator{
+  align-self:flex-end!important;
+}
+/*@media only screen and (max-width: 600px) {
+  :host ::ng-deep .mat-expansion-indicator{
+      align-self:flex-start!important;
+  }
+}*/
+.mat-divider{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.clickable
+{
+  cursor: pointer;
+  color: blue;
+  
+}
+@media only screen and (max-width: 600px) {
+  .wb-buttons{
+      margin-top:10px;
+  }
+}
+
+
+  
+
+
+
+
+
+
+
+

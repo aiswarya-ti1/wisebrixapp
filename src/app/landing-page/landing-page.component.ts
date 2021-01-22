@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
 import { Locations } from './locations';
 import { Categories } from './categories';
+import { AuthService } from '../customer/auth.service';
+
 
 //import { LocalStorageService, SessionStorageService, LocalStorage, SessionStorage } from 'angular-web-storage';
 
@@ -13,14 +14,19 @@ import { Categories } from './categories';
 @Component({
   selector: 'landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
+  
 })
 export class LandingPageComponent implements OnInit {
+
 
   registerForm: FormGroup;
   location :Locations[];
   category :Categories[];
   type :number=0;
+
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   constructor( private _formBuilder: FormBuilder, private authService :AuthService, private router:Router,
     //@Inject(LOCAL_STORAGE) public local: LocalStorageService, public session: SessionStorageService
@@ -41,7 +47,25 @@ export class LandingPageComponent implements OnInit {
       })
    }
 
+   public onCardClick(value){
+    if(value==1)
+    {
+      this.router.navigate(['new-home']);
+    }
+    else if(value==2)
+    {
+      this.router.navigate(['renovation']);
+    }
+    
+  }
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
     this.registerForm = this._formBuilder.group({
     
       type: ['', Validators.required],
@@ -98,4 +122,10 @@ getFreeSpec(values)
     }
   })
 }
+login()
+{
+  this.router.navigate(['login']);
 }
+}
+
+

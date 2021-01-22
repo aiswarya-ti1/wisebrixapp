@@ -8,11 +8,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 /*Font Colour classes for wisebrix*/
 .wb-grey{
-    color:grey;
+    color:#545454;
 }
 .wb-orange{
     color:orange;
 }
+.wb-skyblue{
+    color:#13d8c6;
+}
+.wb-light-grey{
+    color:#6b6d6d;
+}
+
 
 .wb-green{
     color:#7ec423;
@@ -50,3 +57,78 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .wb-blue-button button{
     background-color:#0c96bd;
 }
+
+ /*custom properties of p tag across application*/
+ .grid-container p{
+      
+    /*color:#676362;*/
+    font-size: 16px;
+}
+
+/*mat-icon customisation*/
+
+/*Customize radio button :Start*/
+.mat-radio-button{
+    padding-right: 15px;
+    /*padding-left:15px;
+    margin-top:10px;*/
+    margin-bottom:10px;
+   /* color:#000;*/
+    font-size:15px;
+    
+}
+.mat-radio-title {
+    font-weight: 402;
+}
+.mat-radio-label-content{
+    padding-left:15px !important;
+    padding-right:15px !important;
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color:#DE5B27 !important;
+  }
+  
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:#DE5B27 !important;
+    background-color:#DE5B27 !important;
+  }
+  
+ .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:#DE5B27 !important;
+  }
+  .mat-radio-title{
+      color:#676362 !important;
+  }
+
+ 
+  .mat-radio-inner-circle {
+    width:15px !important;
+    height:15px !important;
+  }
+ .mat-radio-outer-circle{
+    width:15px !important;
+    height:15px !important;
+  }
+  .mat-radio-container{
+    width:15px !important;
+    height:15px !important;
+  }
+  /*Customize radio button :End*/
+
+  /*add margins to div*/
+  .wb-margin-bottom{
+      margin-bottom:15px;
+  }
+  .wb-margin-top{
+    margin-top:15px;
+}
+
+  /*large and medium font sizes*/
+  .wb-large{
+    font-size: xx-large;
+ }
+ .wb-medium{
+    font-size: large;
+ }
+
+

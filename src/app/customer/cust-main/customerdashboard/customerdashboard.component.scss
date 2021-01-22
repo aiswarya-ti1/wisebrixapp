@@ -1,0 +1,86 @@
+
+
+  :host {
+    .container {
+       /* max-width: 1264px;*/
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        background: none;
+    }
+}
+     
+        :host ::ng-deep .mat-tab-group {
+            flex-direction: row;
+        }
+        :host ::ng-deep .mat-tab-header {
+          border-bottom: none;
+        }
+        :host ::ng-deep .mat-tab-header-pagination {
+            display: none !important;
+        }
+        :host ::ng-deep .mat-tab-labels {
+            flex-direction: column;          
+        }
+        :host ::ng-deep .mat-ink-bar {
+            height: 100%;
+            left: 98% !important;
+        }
+        :host ::ng-deep .mat-tab-body-wrapper {
+            flex: 1 1 auto;
+        }
+    
+
+
+.container {
+    position: relative;
+    width: 100%;
+    flex: 1 0 auto;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#content {
+    box-sizing: content-box;
+    margin: 0 auto;
+    padding: 15px;
+   /* width: 1264px;*/
+    background-color: #ffffff;
+}
+
+#content {
+    /*max-width: 1100px;*/
+    width: 100%;
+    background-color: #ffffff;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+#content,
+#main-content {
+    &::before,
+    &::after {
+        content: "";
+        display: table;
+    }
+    &::after {
+        clear: both;
+    }
+}
+
+  
+
+
+.work_details{
+  font-size: 15px !important;
+}
+.work_details_icon {
+  font-size:20px !important;
+}
+.mat-divider{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+

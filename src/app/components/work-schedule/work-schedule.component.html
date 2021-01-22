@@ -1,0 +1,17 @@
+
+ <table class="table gap">
+  <tr style="border-top: hidden">
+      <th style="width: 55%">Work Stages</th>
+      <th class="text-center" style="width: 15%">Start Date</th>
+      <th class="text-center" style="width: 15%" >Duration</th>
+      <th class="text-center" style="width: 15%">End Date</th>
+  </tr>
+   
+  <tr *ngFor="let work of works">
+      <td>{{work.Work_Stage}}</td>
+      <td class="text-center" > {{work.Start_Date | date:'dd/MM/yyyy'}}</td>
+      <td class="text-center">   {{work.Duration}} </td>
+      <td class="text-center" >{{work.End_Date | date:'dd/MM/yyyy'}}</td>
+  </tr>
+  
+  </table>
